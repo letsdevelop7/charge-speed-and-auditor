@@ -107,97 +107,49 @@
 
 <body>
     <div class="container">
-        <span class="last-updated">Last Updated: May 2026</span>
-        <h1>Privacy Policy</h1>
-
-        <p>Welcome to <strong>Charge Speed: Fast Charge</strong> (the "App"), developed by <strong>AppVexis</strong>. We
-            value your privacy and are committed to protecting any information related to your use of our App. This
-            Privacy Policy describes what information we collect, how it is processed, and your options regarding this
-            information.</p>
-
+        <span class="last-updated">Last Updated: 27 October 2026</span>
+        <h1>Privacy Policy — Charge Speed: Fast Charge</h1>
+        <p>AppVexis provides this battery monitoring and measurement app. Contact the developer responsible for the app at <a href="mailto:appvexislabs@gmail.com">appvexislabs@gmail.com</a>.</p>
         <div class="card">
-            <h2>1. Information Collection and Processing</h2>
-            <p>Our App is designed to function primarily as a local utility tool to help you monitor, measure, and
-                optimize your device's battery health and charging performance. Accordingly, our data handling practices
-                are as follows:</p>
+            <h2>Battery data, history and device storage</h2>
+            <p>Battery level, charging state, current, voltage, temperature, charging sessions, charger tests, alarm settings and confirmed design capacity are processed on your device. The app does not upload battery histories or calibration values to our servers. Measurements depend on the sensors your device exposes; the app cannot increase charging hardware speed.</p>
+            <p>Charging sessions are retained until you delete them, clear app storage or uninstall. Free users can view the most recent 200 sessions; PRO can view all retained sessions in pages, subject to available device storage. Earlier versions may have deleted older records; those records cannot be recovered.</p>
+            <p>This version disables automatic Android cloud backup and device transfer of app data, including history, active monitoring checkpoints, calibration, consent preferences and cached PRO status. A new device needs fresh consent setup, capacity confirmation and purchase restoration through Google Play. Existing backups made by older versions are controlled by Android and your backup provider; this setting does not erase them.</p>
+            <p>CSV export is optional. Free users may earn an export of their most recent 200 sessions by watching a rewarded video; PRO can export all retained sessions without an ad. Export files are held temporarily in app cache and shared only with the destination you select. Export files and copies held by recipients are under your control; exports are not an app restore mechanism.</p>
+        </div>
+        <div class="card">
+            <h2>Advertising and European privacy choices</h2>
+            <p>The free version uses Google AdMob, including banner, rewarded, interstitial and app-open formats. App-open ads may appear on eligible launches and returns to the app after the first session. Local opening/frequency counters limit these ads and are not uploaded as developer analytics. Google's advertising services can process identifiers such as Advertising ID, IP address (including an approximate location inferred from it), device and app information, ad interactions and diagnostic information to deliver ads, measure performance and prevent fraud. The app does not request precise location or access contacts.</p>
+            <p>Google's User Messaging Platform updates consent information on app launch and displays the configured regional privacy message when required. Ads are requested only when UMP permits requests. Where available, use <strong>Settings &gt; Ad privacy choices</strong> to review or change your choices, including after purchasing PRO. The free battery functions remain usable while consent or ads are unavailable. PRO suppresses ad requests; privacy setup can still contact Google.</p>
+            <p>Depending on your choices, local requirements and inventory, ads may be personalized, non-personalized, limited or unavailable. Identifiers and SDK storage can be used for advertising where permitted. Advertising consent can be withdrawn through the privacy options entry point when required. Google's own processing is described in the <a href="https://policies.google.com/privacy">Google Privacy Policy</a> and <a href="https://policies.google.com/technologies/ads">advertising information</a>.</p>
+        </div>
+        <div class="card">
+            <h2>Optional PRO purchases and restoration</h2>
+            <p>Google Play processes the one-time PRO purchase and payment information. The app does not receive payment-card details. It uses the Google Play Billing SDK to query purchases for the current Play account and acknowledge delivery of a completed purchase. The purchase token returned by Google Play is used for this acknowledgment; AppVexis does not run a purchase-verification server or upload purchase tokens to its own servers.</p>
+            <p>The app stores a local cached PRO flag for offline continuity. It rechecks ownership on launch, return to the foreground, purchase restoration and scheduled on-device recovery. A successful query that finds no owned PRO purchase removes cached access. Failed queries preserve previously cached access and report a connection error. Pending payments do not grant PRO or get acknowledged.</p>
+            <p>If acknowledgment is interrupted, Android WorkManager schedules network-constrained retries and re-queries Google Play. Purchase tokens are not placed in WorkManager requests or application logs. Android background restrictions, force-stop, loss of connectivity or uninstall can prevent work from running; reopening the app resumes checks. There are no AppVexis server notifications or independent cloud purchase records. Google retains its own purchase and account records under its policies. Clearing local storage does not cancel a Google Play purchase.</p>
+        </div>
+        <div class="card">
+            <h2>Permissions and background work</h2>
             <ul>
-                <li><span class="accent-text">Battery Status and Health Data:</span> The App accesses standard battery
-                    diagnostics provided by your device (such as charging current, voltage, temperature, capacity,
-                    level, and technology). This data is processed in real-time and stored <strong>entirely
-                        locally</strong> on your device's secure SQLite database. We do not transmit this data to any
-                    external servers.</li>
-                <li><span class="accent-text">No Personal Information:</span> We do not collect, request, or store any
-                    personally identifiable information (PII) such as your name, email address, physical address, phone
-                    number, or contacts.</li>
+                <li><strong>Internet and network state:</strong> advertising, consent and Google Play purchase queries/acknowledgment; retry work waits for a network.</li>
+                <li><strong>Billing:</strong> optional purchase and restoration through Google Play.</li>
+                <li><strong>Notifications, vibration and foreground service (special use):</strong> the background battery monitor you enable in Settings, its status and enabled charge, temperature and low-battery alerts. A stop control is provided. Without background monitoring, sessions are observed only while the app is visible. Android/OEM restrictions and denied notifications can affect operation.</li>
+                <li><strong>Boot completed:</strong> an optional reminder to reopen monitoring after restart and rescheduling durable purchase-recovery work. The battery monitor is not silently restarted at boot.</li>
+                <li><strong>Wake lock:</strong> Android scheduling and notification libraries may briefly keep the device awake for work. The app does not hold a permanent monitoring wake lock.</li>
+                <li><strong>Advertising ID and ad-services permissions:</strong> supplied by the Google advertising SDK for permitted advertising functions.</li>
             </ul>
         </div>
-
         <div class="card">
-            <h2>2. Device Permissions Used</h2>
-            <p>To provide its core functionality, the App requires certain system permissions. Each permission is used
-                solely for the reasons detailed below:</p>
-            <ul>
-                <li><span class="accent-text">INTERNET:</span> Required to load advertisements from Google AdMob and to
-                    fetch general configuration properties.</li>
-                <li><span class="accent-text">POST_NOTIFICATIONS:</span> Required to trigger audio and visual alerts
-                    when your battery reaches custom charging or temperature thresholds.</li>
-                <li><span class="accent-text">FOREGROUND_SERVICE & FOREGROUND_SERVICE_DATA_SYNC:</span> Required to run
-                    a background service that monitors battery events while charging, ensuring alarms fire accurately
-                    even when the App is not actively in focus.</li>
-            </ul>
+            <h2>Your choices and rights</h2>
+            <p>No app account is required. If you email support, your address and any information you choose to send are processed to answer your request. The email draft may include your device model and Android version; you can review or remove them before sending. Support is available to all users and has no guaranteed response time. Do not include sensitive files unless necessary.</p>
+            <p>Local utility processing supports the functions you request. Purchase processing is used to deliver the paid service; security and fraud prevention protect that service. Advertising consent is requested where required. Google services may process data outside your country using the safeguards described in their terms. Depending on your location, you may have rights of access, correction, deletion, restriction, portability or objection and may complain to your local data-protection authority. Contact AppVexis to exercise rights concerning information you have shared with us. Manage Google Play purchase records through Google. Removing local app data does not cancel a Google Play purchase or remove Google's records.</p>
+            <p>You can delete individual sessions in Analytics, clear app storage in Android settings, disable background monitoring, change notification permissions and manage advertising choices. Reinstall from Google Play to restore an eligible purchase. Uninstalling or clearing storage removes local history and calibration; a purchase entitlement can subsequently be restored from Google Play.</p>
         </div>
-
         <div class="card">
-            <h2>3. Third-Party Services and Advertising</h2>
-            <p>To support development and keep the App free, we use third-party services that may collect information
-                used to identify your device. We integrate with:</p>
-            <ul>
-                <li><strong>Google AdMob:</strong> AdMob uses cookies and unique device identifiers (such as the Google
-                    Advertising ID or GAID) to serve personalized advertisements, perform ad diagnostics, and limit the
-                    frequency of ads.</li>
-                <li><strong>Google Play Services:</strong> Used to run core system libraries and facilitate App
-                    delivery.</li>
-            </ul>
-            <p>Please refer to the privacy policies of these third-party providers for more details:</p>
-            <p><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy &
-                    Terms</a></p>
-        </div>
-
-        <div class="card">
-            <h2>4. Cookies</h2>
-            <p>Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers.
-                While our App itself does not set cookies, Google AdMob and Google Play Services may use cookies or
-                mobile identifiers for ad tracking and personalization purposes.</p>
-        </div>
-
-        <div class="card">
-            <h2>5. Children's Privacy</h2>
-            <p>Our App does not address anyone under the age of 13. We do not knowingly collect personal identifiable
-                information from children under 13. If we discover that a child under 13 has provided us with personal
-                information, we immediately delete this from our records. If you are a parent or guardian and you are
-                aware that your child has provided us with personal information, please contact us so that we can take
-                necessary actions.</p>
-        </div>
-
-        <div class="card">
-            <h2>6. Security</h2>
-            <p>We value your trust in providing us your device data, thus we are striving to use commercially acceptable
-                means of protecting it. Since all battery test histories and charge session statistics are stored
-                exclusively in your device's local database, they are protected by Android's built-in sandbox security
-                model.</p>
-        </div>
-
-        <div class="card">
-            <h2>7. Changes to This Privacy Policy</h2>
-            <p>We may update our Privacy Policy from time to time. Thus, you are advised to review this page
-                periodically for any changes. We will notify you of any changes by posting the new Privacy Policy on
-                this page. These changes are effective immediately after they are posted on this page.</p>
-        </div>
-
-        <div class="card">
-            <h2>8. Contact Us</h2>
-            <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at <a
-                    href="mailto:appvexislabs@gmail.com">appvexislabs@gmail.com</a>.</p>
+            <h2>Children, security and changes</h2>
+            <p>The app is not directed to children under 13. Contact us if a child has provided information to the developer. The Play Store audience declaration and advertising settings must reflect the intended audience.</p>
+            <p>Android's app sandbox protects local files. Google services use their own security measures for billing and advertising; no system can guarantee absolute security. This policy will be updated when processing changes. The date above identifies this version.</p>
         </div>
     </div>
 </body>
